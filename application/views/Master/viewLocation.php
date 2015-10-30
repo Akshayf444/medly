@@ -35,7 +35,7 @@
         console.log(dataString);
         console.log(container_id);
         console.log(url);
-        
+
         var data = dataString;
         $("#img").show();
         $.ajax({

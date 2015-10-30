@@ -16,9 +16,6 @@
                 <?php $this->load->view($content); ?>
             </div>
         </div>
-        <?php $this->load->view('footer'); ?>
-
-
         <!-- Bootstrap Core JavaScript -->
         <script src="<?php echo asset_url() ?>/js/bootstrap.min.js"></script>    
     </body>

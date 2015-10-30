@@ -8,7 +8,7 @@ class Master extends CI_Controller {
     }
 
     function index() {
-        redirect(site_url('Master/viewLocation'),'refresh');
+        redirect(site_url('Master/viewLocation'), 'refresh');
         $this->viewLocation();
     }
 
@@ -120,6 +120,12 @@ class Master extends CI_Controller {
 
                 $table .='<tr><td class="GridFooter" colspan="6"></td></tr></table>';
                 echo $table;
+            }
+        }
+
+        function getLevel() {
+            if ($this->level > 5) {
+                
             }
         }
 

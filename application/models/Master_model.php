@@ -130,8 +130,15 @@ class Master_model extends CI_Model {
         return $dropdown;
     }
 
-    function listDivision() {
-        $query = $this->db->get('division');
+    function listDivision($div_id = 0) {
+        if (isset($div_id) && $div_id > 0) {
+            $this->db->select('*');
+            $this->db->from('division');
+            $this->db->where('div_id', $div_id);
+            $query = $this->db->get();
+        } else {
+            $query = $this->db->get('division');
+        }
         return $query->result();
     }
 
@@ -195,7 +202,7 @@ class Master_model extends CI_Model {
 
     function listTerritory($area_id = 0, $div_id = 0) {
         $this->db->select('ter.*,tm.*');
-        $this->db->form('territory ter');
+        $this->db->from('territory ter');
         $this->db->join('tm', 'ter.ter_id = tm.ter_id');
         if ($div_id > 0) {
             $this->db->where('ter.div_id', $div_id);
@@ -211,7 +218,7 @@ class Master_model extends CI_Model {
 
     function listTown($ter_id = 0, $div_id = 0) {
         $this->db->select('*');
-        $this->db->form('town');
+        $this->db->from('town');
         if ($div_id > 0) {
             $this->db->where('town.div_id', $div_id);
             $query = $this->db->get();
@@ -222,6 +229,35 @@ class Master_model extends CI_Model {
             $query = $this->db->get();
         }
         return $query->result();
+    }
+
+    function listLevel($level = 0) {
+        $this->db->select('*');
+        $this->db->from('level');
+        if (isset($level) && $level > 0) {
+            $this->db->where('id >=', $level);
+        } else {
+            $this->db->select('*');
+            $this->db->form('level');
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function generateDropdown($result, $fieldid, $fieldname, $id = 0) {
+        $dropdown = '<select id ="' . $fieldid . '" ><option value="-1" ></option>';
+        if (!empty($result)) {
+            foreach ($result as $item) {
+                if ($id == $item->{$fieldid}) {
+                    $dropdown .= '<option value="' . $item->{$fieldid} . '" selected>' . $item->{$fieldname} . '</option>';
+                } else {
+                    $dropdown .= '<option value="' . $item->{$fieldid} . '" >' . $item->{$fieldname} . '</option>';
+                }
+            }
+        }
+
+        $dropdown .= '</select>';
+        return $dropdown;
     }
 
 }

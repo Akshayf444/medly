@@ -2,12 +2,12 @@
 
 class MY_Controller extends CI_Controller {
 
-    protected $user_id;
-    protected $user_type;
-    protected $level;
-    protected $repname;
-    protected $repcode;
-    protected $div_id;
+    public $user_id;
+    public $user_type;
+    public $level;
+    public $repname;
+    public $repcode;
+    public $div_id;
 
     function __construct() {
         parent::__construct();

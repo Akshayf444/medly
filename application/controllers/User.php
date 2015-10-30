@@ -66,13 +66,13 @@ class User extends MY_Controller {
         }
 
         $view = array('title' => 'Login', 'content' => 'User/login', 'view_data' => $data);
-        $this->load->view('template1', $view);
+        $this->load->view('template2', $view);
     }
 
     function dashboard() {
         if ($this->is_logged_in()) {
             $data['sessiondump'] = $this->session->all_userdata();
-            $view = array('title' => 'Login', 'content' => 'User/dashboard', 'view_data' => $data);
+            $view = array('title' => 'Home', 'content' => 'User/dashboard', 'view_data' => $data);
             $this->load->view('template1', $view);
         } else {
             $this->logout();
